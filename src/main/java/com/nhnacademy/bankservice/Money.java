@@ -1,18 +1,29 @@
 package com.nhnacademy.bankservice;
 
 public class Money {
-    private int cash;
+    private int money;
     private String currency;
-    public Money(int money, String currency) {
-        this.cash = money;
+    private String code;
+
+    public Money(String code, int money, String currency) {
+        this.money = money;
         this.currency = currency;
+        this.code = code;
     }
 
-    public int add(int money, String currency) {
-        return this.cash += money;
+    public int addMoney(int money) {
+        return this.money += money;
     }
 
     public int getMoney() {
-        return this.cash;
+        return this.money;
+    }
+
+    public String getCode() {
+        return this.code;
+    }
+
+    public String getResult() {
+        return money + " " + currency;
     }
 }
