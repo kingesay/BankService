@@ -6,9 +6,14 @@ public class Money {
     private String code;
 
     public Money(String code, int money, String currency) {
+        checkCorrectInput(money);
         this.money = money;
         this.currency = currency;
         this.code = code;
+    }
+
+    private void checkCorrectInput(int money) {
+
     }
 
     public int addMoney(int money) {
@@ -25,5 +30,9 @@ public class Money {
 
     public String getResult() {
         return money + " " + currency;
+    }
+
+    public String getCurrency() {
+        return currency;
     }
 }

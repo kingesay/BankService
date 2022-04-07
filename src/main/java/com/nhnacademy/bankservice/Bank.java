@@ -1,5 +1,6 @@
 package com.nhnacademy.bankservice;
 
+import com.nhnacademy.exceptions.DifferentCurrencyException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,13 +11,18 @@ public class Bank {
         bankRepository.put(money.getCode(), money);
     }
 
-    public void addMoney(Money money, int depositMoney, String won) {
-        money.addMoney(depositMoney);
-        System.out.println(bankRepository.get(money.getCode()));
+    public void addMoney(String moneyId, int depositMoney, String currency) {
+        checkEqualsCurrency(bankRepository.get(moneyId), currency);
+        bankRepository.get(moneyId).addMoney(depositMoney);
     }
 
-    public String getResult(Money money) {
-        return bankRepository.get(money.getCode()).getResult();
+    private void checkEqualsCurrency(Money money, String currency) {
+        if(!money.getCurrency().equals(currency))
+            throw new DifferentCurrencyException("통화가 다릅니다.");
+    }
+
+    public String getResult(String moneyId) {
+        return bankRepository.get(moneyId).getResult();
     }
 
     private Map<String, Money> getbankRepostiory() {
