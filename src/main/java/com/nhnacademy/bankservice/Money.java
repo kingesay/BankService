@@ -1,5 +1,7 @@
 package com.nhnacademy.bankservice;
 
+import com.nhnacademy.exceptions.InvalidInputException;
+
 public class Money {
     private int money;
     private String currency;
@@ -13,7 +15,8 @@ public class Money {
     }
 
     private void checkCorrectInput(int money) {
-
+        if(money<0)
+            throw new InvalidInputException("상수로 입력해 주세요");
     }
 
     public int addMoney(int money) {
